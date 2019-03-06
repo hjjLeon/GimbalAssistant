@@ -43,6 +43,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZGraph">
+      <HintPath>C:\Users\Leon\Downloads\ZGraph\ZGraph\WaveShowDemo\bin\Debug\ZGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
