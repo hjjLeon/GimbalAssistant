@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using ZvGraph.UI;
 
 namespace GimbleAssistant
 {
     public partial class Form1 : Form
     {
+        public List<float> x1 = new List<float>();
+        public List<float> y1 = new List<float>();
+        public List<float> x2 = new List<float>();
+        public List<float> y2 = new List<float>();
+        public List<float> x3 = new List<float>();
+        public List<float> y3 = new List<float>();
+        private Boolean anoStatus = false;
         private Queue<float> dataQueueCh1 = new Queue<float>();
         private Queue<float> dataQueueCh2 = new Queue<float>();
         private Queue<float> dataQueueCh3 = new Queue<float>();
@@ -40,6 +40,144 @@ namespace GimbleAssistant
 
             numericUpDown1.Value = 100;
 
+            //checkedListBox2.Items[0].
+
+        }
+
+        private void zGraphLoadPix()
+        {
+            zGraph1.f_ClearAllPix();
+            zGraph1.f_reXY();
+            if (checkedListBox2.GetItemChecked(0))
+            {
+                zGraph1.f_AddPix(ref x1, ref y1, Color.Blue, 2);
+            }
+            if (checkedListBox2.GetItemChecked(1))
+            {
+                zGraph1.f_AddPix(ref x2, ref y2, Color.Green, 2);
+            }                     
+            if (checkedListBox2.GetItemChecked(2))
+            {
+                zGraph1.f_AddPix(ref x3, ref y3, Color.Red, 2);
+            }
+
+        }
+
+        private void UpdateQueueValue(int ch, Queue<float> dataQueue, float data)
+        {
+
+            while(dataQueue.Count > numericUpDown1.Value-1)
+            {
+                dataQueue.Dequeue();
+            }
+            dataQueue.Enqueue(data);
+            
+            switch(ch)
+            {
+                case 1:
+                    y1.Clear();
+                    x1.Clear();
+                    for (int i = 0; i < dataQueue.Count; i++)
+                    {
+                        y1.Add(dataQueue.ElementAt(i));
+                        x1.Add((i + 1));
+                    }
+                    break;
+                case 2:
+                    y2.Clear();
+                    x2.Clear();
+                    for (int i = 0; i < dataQueue.Count; i++)
+                    {
+                        y2.Add(dataQueue.ElementAt(i));
+                        x2.Add((i + 1));
+                    }
+                    break;
+                case 3:
+                    y3.Clear();
+                    x3.Clear();
+                    for (int i = 0; i < dataQueue.Count; i++)
+                    {
+                        y3.Add(dataQueue.ElementAt(i));
+                        x3.Add((i + 1));
+                    }
+                    break;
+            }
+        }
+        
+        private void AnoAnalysis(byte[] buff, int offset, ref float[] data)
+        {
+            Int16 temp;
+            temp = BitConverter.ToInt16(buff, offset + 0);
+            data[0] = Convert.ToSingle(temp);
+            temp = BitConverter.ToInt16(buff, offset + 2);
+            data[1] = Convert.ToSingle(temp);
+            temp = BitConverter.ToInt16(buff, offset + 4);
+            data[2] = Convert.ToSingle(temp);
+        }
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                if (anoStatus)
+                {
+                    byte[] buff = new byte[100];
+                    float[] data = new float[3];
+                    int num = serialPort1.BytesToRead;
+                    serialPort1.Read(buff, 0, num);
+                    if (buff[0]==0xAA && buff[1] == 0xAA)
+                    {
+                        int dataLen = buff[3];
+                        if (checkedListBox1.GetItemChecked(0))
+                        {
+                            AnoAnalysis(buff, 3, ref data);
+                        }
+                        else if (checkedListBox1.GetItemChecked(1))
+                        {
+                            AnoAnalysis(buff, 9, ref data);
+                        }
+                        else if (checkedListBox1.GetItemChecked(2))
+                        {
+                            AnoAnalysis(buff, 15, ref data);
+                        }
+                        //因为要访问UI资源，所以需要使用invoke方式同步ui
+                        this.Invoke((EventHandler)(delegate
+                        {
+                            if (checkedListBox2.GetItemChecked(0))
+                            {
+                                UpdateQueueValue(1, dataQueueCh1, data[0]);
+                            }
+                            if (checkedListBox2.GetItemChecked(1))
+                            {
+                                UpdateQueueValue(2, dataQueueCh2, data[1]);
+                            }
+                            if (checkedListBox2.GetItemChecked(2))
+                            {
+                                UpdateQueueValue(3, dataQueueCh3, data[2]);
+                            }
+                            zGraph1.f_Refresh();
+                        }
+                           )
+                        );
+                    }
+                }
+                else
+                {
+                    //因为要访问UI资源，所以需要使用invoke方式同步ui
+                    this.Invoke((EventHandler)(delegate
+                    {
+                        textBox1.AppendText(serialPort1.ReadExisting());
+                    }
+                       )
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                //响铃并显示异常给用户
+                System.Media.SystemSounds.Beep.Play();
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -148,141 +286,6 @@ namespace GimbleAssistant
             }
         }
 
-        private void UpdateQueueValue(int ch, Queue<float> dataQueue, float data)
-        {
-
-            while(dataQueue.Count > numericUpDown1.Value-1)
-            {
-                dataQueue.Dequeue();
-            }
-            dataQueue.Enqueue(data);
-            
-            switch(ch)
-            {
-                case 1:
-                    y1.Clear();
-                    x1.Clear();
-                    for (int i = 0; i < dataQueue.Count; i++)
-                    {
-                        y1.Add(dataQueue.ElementAt(i));
-                        x1.Add((i + 1));
-                    }
-                    break;
-                case 2:
-                    y2.Clear();
-                    x2.Clear();
-                    for (int i = 0; i < dataQueue.Count; i++)
-                    {
-                        y2.Add(dataQueue.ElementAt(i));
-                        x2.Add((i + 1));
-                    }
-                    break;
-                case 3:
-                    y3.Clear();
-                    x3.Clear();
-                    for (int i = 0; i < dataQueue.Count; i++)
-                    {
-                        y3.Add(dataQueue.ElementAt(i));
-                        x3.Add((i + 1));
-                    }
-                    break;
-            }
-        }
-        
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                if (anoStatus)
-                {
-                    byte[] buff = new byte[100];
-                    int num = serialPort1.BytesToRead;
-                    serialPort1.Read(buff, 0, num);
-                    if (buff[0]==0xAA && buff[1] == 0xAA)
-                    {
-                        int dataLen = buff[3];
-                        Int16 mlx3 = BitConverter.ToInt16(buff, 15);
-                        float mlx3f = Convert.ToSingle(mlx3);
-                        Int16 mlx1 = BitConverter.ToInt16(buff, 17);
-                        float mlx1f = Convert.ToSingle(mlx1);
-                        Int16 mlx2 = BitConverter.ToInt16(buff, 19);
-                        float mlx2f = Convert.ToSingle(mlx2);
-                        //因为要访问UI资源，所以需要使用invoke方式同步ui
-                        this.Invoke((EventHandler)(delegate
-                        {
-                            if (checkedListBox2.GetItemChecked(0))
-                            {
-                                UpdateQueueValue(1, dataQueueCh1, mlx3f);
-                            }
-                            if (checkedListBox2.GetItemChecked(1))
-                            {
-                                UpdateQueueValue(2, dataQueueCh2, mlx2f);
-                            }
-                            if (checkedListBox2.GetItemChecked(2))
-                            {
-                                UpdateQueueValue(3, dataQueueCh3, mlx1f);
-                            }
-                            zGraph1.f_Refresh();
-                        }
-                           )
-                        );
-                    }
-                }
-                else
-                {
-                    //因为要访问UI资源，所以需要使用invoke方式同步ui
-                    this.Invoke((EventHandler)(delegate
-                    {
-                        textBox1.AppendText(serialPort1.ReadExisting());
-                    }
-                       )
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                //响铃并显示异常给用户
-                System.Media.SystemSounds.Beep.Play();
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public List<float> x1 = new List<float>();
-        public List<float> y1 = new List<float>();
-        public List<float> x2 = new List<float>();
-        public List<float> y2 = new List<float>();
-        public List<float> x3 = new List<float>();
-        public List<float> y3 = new List<float>();
-        public List<float> x4 = new List<float>();
-        public List<float> y4 = new List<float>();
-        public List<float> x5 = new List<float>();
-        public List<float> y5 = new List<float>();
-        public List<float> x6 = new List<float>();
-        public List<float> y6 = new List<float>();
-        public List<float> x7 = new List<float>();
-        public List<float> y7 = new List<float>();
-        public List<float> x8 = new List<float>();
-        public List<float> y8 = new List<float>();
-
-        public Boolean anoStatus = false;
-        private void zGraphLoadPix()
-        {
-            zGraph1.f_ClearAllPix();
-            zGraph1.f_reXY();
-            if(checkedListBox2.GetItemChecked(0))
-            {
-                zGraph1.f_AddPix(ref x1, ref y1, Color.Blue, 2);
-            }
-            if (checkedListBox2.GetItemChecked(1))
-            {
-                zGraph1.f_AddPix(ref x2, ref y2, Color.Green, 2);
-            }
-            if (checkedListBox2.GetItemChecked(2))
-            {
-                zGraph1.f_AddPix(ref x3, ref y3, Color.Red, 2);
-            }
-
-        }
         private void button7_Click(object sender, EventArgs e)
         {
             try
@@ -340,6 +343,10 @@ namespace GimbleAssistant
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            zGraphLoadPix();
+            dataQueueCh1.Clear();
+            dataQueueCh2.Clear();
+            dataQueueCh3.Clear();
         }
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -362,5 +369,6 @@ namespace GimbleAssistant
                 }
             }
         }
+        
     }
 }

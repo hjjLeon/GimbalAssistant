@@ -52,6 +52,9 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -303,6 +306,7 @@
             // 
             // checkedListBox2
             // 
+            this.checkedListBox2.BackColor = System.Drawing.Color.White;
             this.checkedListBox2.CausesValidation = false;
             this.checkedListBox2.CheckOnClick = true;
             this.checkedListBox2.FormattingEnabled = true;
@@ -315,6 +319,9 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.checkedListBox1);
             this.panel4.Controls.Add(this.button7);
             this.panel4.Controls.Add(this.checkedListBox2);
@@ -322,6 +329,42 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(158, 191);
             this.panel4.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Red;
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(110, 126);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 14);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "CH3";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(110, 112);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 14);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "CH2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Blue;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(110, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 14);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "CH1";
             // 
             // numericUpDown1
             // 
@@ -379,6 +422,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -412,6 +456,9 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }
 
