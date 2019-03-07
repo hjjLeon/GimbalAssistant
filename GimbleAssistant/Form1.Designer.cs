@@ -46,15 +46,19 @@
             this.comboBoxDataSize = new System.Windows.Forms.ComboBox();
             this.comboBoxBaud = new System.Windows.Forms.ComboBox();
             this.comboBoxComNum = new System.Windows.Forms.ComboBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.zGraph1 = new ZvGraph.UI.ZGraph();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -232,28 +236,6 @@
             this.comboBoxComNum.Size = new System.Drawing.Size(93, 20);
             this.comboBoxComNum.TabIndex = 0;
             // 
-            // panel4
-            // 
-            this.panel4.Location = new System.Drawing.Point(4, 180);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(158, 77);
-            this.panel4.TabIndex = 3;
-            // 
-            // panel5
-            // 
-            this.panel5.Location = new System.Drawing.Point(5, 263);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(157, 68);
-            this.panel5.TabIndex = 4;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.button3);
-            this.panel6.Location = new System.Drawing.Point(4, 336);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(572, 35);
-            this.panel6.TabIndex = 5;
-            // 
             // serialPort1
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
@@ -284,8 +266,8 @@
             this.zGraph1.m_GraphBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.zGraph1.m_iLineShowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.zGraph1.m_iLineShowColorAlpha = 100;
-            this.zGraph1.m_SySnameX = "X轴坐标";
-            this.zGraph1.m_SySnameY = "Y轴坐标";
+            this.zGraph1.m_SySnameX = "Time";
+            this.zGraph1.m_SySnameY = "Value";
             this.zGraph1.m_SyStitle = "波形显示";
             this.zGraph1.m_titleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.zGraph1.m_titleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -297,24 +279,93 @@
             this.zGraph1.Size = new System.Drawing.Size(468, 364);
             this.zGraph1.TabIndex = 7;
             // 
-            // button3
+            // button7
             // 
-            this.button3.Location = new System.Drawing.Point(434, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 31);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button7.Location = new System.Drawing.Point(110, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(45, 88);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "打开波形显示";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.CausesValidation = false;
+            this.checkedListBox1.CheckOnClick = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(3, 7);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(101, 84);
+            this.checkedListBox1.TabIndex = 3;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.CausesValidation = false;
+            this.checkedListBox2.CheckOnClick = true;
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Location = new System.Drawing.Point(3, 97);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(101, 84);
+            this.checkedListBox2.TabIndex = 4;
+            this.checkedListBox2.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox2_ItemCheck);
+            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.checkedListBox1);
+            this.panel4.Controls.Add(this.button7);
+            this.panel4.Controls.Add(this.checkedListBox2);
+            this.panel4.Location = new System.Drawing.Point(4, 180);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(158, 191);
+            this.panel4.TabIndex = 3;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Location = new System.Drawing.Point(285, 3);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 21);
+            this.numericUpDown1.TabIndex = 0;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.numericUpDown1);
+            this.panel6.Location = new System.Drawing.Point(168, 336);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(408, 35);
+            this.panel6.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 376);
+            this.ClientSize = new System.Drawing.Size(1051, 374);
             this.Controls.Add(this.zGraph1);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -327,6 +378,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -338,9 +391,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxStopBit;
@@ -356,7 +406,12 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button button2;
         private ZvGraph.UI.ZGraph zGraph1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Panel panel6;
     }
 }
 
