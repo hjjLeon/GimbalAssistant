@@ -17,6 +17,7 @@ namespace GimbleAssistant
         public List<float> y3 = new List<float>(1000);
         private Boolean anoStatus = false;
         private bool AllowSelect = true;
+        private bool normalUpdate = true;
         private Queue<float> dataQueueCh1 = new Queue<float>();
         private Queue<float> dataQueueCh2 = new Queue<float>();
         private Queue<float> dataQueueCh3 = new Queue<float>();
@@ -50,6 +51,10 @@ namespace GimbleAssistant
 
             serialPort1.NewLine = "\r\n";
 
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.AutoPopDelay = 10000; toolTip1.InitialDelay = 500; toolTip1.ReshowDelay = 500;
+            toolTip1.ShowAlways = true;
+            toolTip1.SetToolTip(this.button8, "1.确保云台BootLoader完好\r\n2.确保串口连接正常\r\n3.切断云台供电\r\n4.点击修复按钮\r\n5.在5S内给云台重新上电");
         }
 
         private void AnoSwitch(Boolean status)
@@ -458,6 +463,7 @@ namespace GimbleAssistant
                 button6.Text = "升级中";
                 button6.Enabled = false;
                 button5.Enabled = false;
+                button8.Enabled = false;
                 AllowSelect = false;
 
                 ymodem = new Ymodem.Ymodem();
@@ -483,14 +489,28 @@ namespace GimbleAssistant
         private void UploadFileProgress(int count)
         {
             progressBar1.Value = count;
-
-            if(count%5 == 0)
+            if(normalUpdate)
             {
-                button6.Text += ".";
-                if (button6.Text.Length > 6)
+                if (count % 5 == 0)
                 {
-                    button6.Text = "升级中.";
+                    button6.Text += ".";
+                    if (button6.Text.Length > 6)
+                    {
+                        button6.Text = "升级中.";
+                    }
                 }
+            }
+            else
+            {
+                if (count % 5 == 0)
+                {
+                    button8.Text += ".";
+                    if (button8.Text.Length > 6)
+                    {
+                        button8.Text = "修复中.";
+                    }
+                }
+
             }
         }
         #endregion
@@ -507,17 +527,25 @@ namespace GimbleAssistant
             AllowSelect = true;
             button6.Enabled = true;
             button5.Enabled = true;
+            button8.Enabled = true;
             if (result == true)
             {
                 MessageBox.Show("升级成功");
-                this.button6.Text = "升级";
                 this.progressBar1.Value = 0;
             }
             else
             {
                 MessageBox.Show("升级失败");
-                this.button6.Text = "升级";
                 this.progressBar1.Value = 0;
+            }
+            if (normalUpdate)
+            {
+                this.button6.Text = "升级";
+            }
+            else
+            {
+                normalUpdate = true;
+                this.button8.Text = "固件修复";
             }
         }
         #endregion
@@ -525,6 +553,62 @@ namespace GimbleAssistant
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             e.Cancel = !AllowSelect;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                button8.Text = "等待中...";
+                button6.Enabled = false;
+                button5.Enabled = false;
+                button8.Enabled = false;
+                AllowSelect = false;
+
+                for(i = 0; i < 30; i++)
+                {
+                    serialPort1.Write("l");
+                    if (serialPort1.BytesToRead != 0 && serialPort1.ReadByte() == 'C')
+                    {
+                        break;
+                    }
+                    button8.Text += ".";
+                    if (button8.Text.Length > 6)
+                    {
+                        button8.Text = "等待中.";
+                    }
+                    System.Threading.Thread.Sleep(200);
+                }
+                if(i >= 30)
+                {
+                    button6.Enabled = true;
+                    button5.Enabled = true;
+                    button8.Enabled = true;
+                    AllowSelect = true;
+                    return;
+                }
+
+                normalUpdate = false;
+
+                //因为要访问UI资源，所以需要使用invoke方式同步ui
+                this.Invoke((EventHandler)(delegate
+                {
+                    button8.Text = "修复中.";
+                }
+                ));
+
+                ymodem = new Ymodem.Ymodem();
+                ymodem.serialPort = serialPort1;
+                ymodem.Path = textBox3.Text.ToString();
+                ymodem.PortName = comboBoxComNum.SelectedItem.ToString();
+                ymodem.BaudRate = Convert.ToInt32(comboBoxBaud.SelectedItem.ToString());
+                downloadThread = new System.Threading.Thread(ymodem.YmodemUploadFile);
+                ymodem.NowDownloadProgressEvent += new EventHandler(NowDownloadProgressEvent);
+                ymodem.DownloadResultEvent += new EventHandler(DownloadFinishEvent);
+                downloadThread.Start();
+
+            }
         }
     }
 }

@@ -73,6 +73,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -557,6 +558,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.button8);
             this.panel7.Controls.Add(this.progressBar1);
             this.panel7.Controls.Add(this.button6);
             this.panel7.Controls.Add(this.button5);
@@ -612,6 +614,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "设置";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(165, 27);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 4;
+            this.button8.Text = "固件修复";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
@@ -692,6 +704,7 @@
 
         System.Threading.Thread downloadThread;
         private Ymodem.Ymodem ymodem;
+        private System.Windows.Forms.Button button8;
     }
 }
 
