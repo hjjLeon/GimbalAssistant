@@ -54,7 +54,7 @@ namespace GimbleAssistant
             ToolTip toolTip1 = new ToolTip();
             toolTip1.AutoPopDelay = 10000; toolTip1.InitialDelay = 500; toolTip1.ReshowDelay = 500;
             toolTip1.ShowAlways = true;
-            toolTip1.SetToolTip(this.button8, "1.确保云台BootLoader完好\r\n2.确保串口连接正常\r\n3.切断云台供电\r\n4.点击修复按钮\r\n5.在5S内给云台重新上电");
+            toolTip1.SetToolTip(this.button8, "1.确保云台BootLoader完好\r\n2.确保串口连接正常\r\n3.切断云台供电\r\n4.选择用于修复的固件\r\n5.点击修复按钮\r\n6.在5S内给云台重新上电");
         }
 
         private void AnoSwitch(Boolean status)
@@ -198,6 +198,10 @@ namespace GimbleAssistant
                     else if (checkedListBox1.GetItemChecked(2))
                     {
                         AnoAnalysis(buff, 15, ref data);
+                    }
+                    else
+                    {
+                        return;
                     }
 
                     if (checkedListBox2.GetItemChecked(0))
