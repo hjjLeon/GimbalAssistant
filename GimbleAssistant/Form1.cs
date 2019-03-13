@@ -416,6 +416,9 @@ namespace GimbleAssistant
             {
 
             }
+            else if (e.TabPage == tabPage3)
+            {
+            }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -613,6 +616,23 @@ namespace GimbleAssistant
                 downloadThread.Start();
 
             }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxComNum_Click(object sender, EventArgs e)
+        {
+            String temp = (String)comboBoxComNum.SelectedItem;
+            comboBoxComNum.Items.Clear();
+            comboBoxComNum.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+
+            int index = comboBoxComNum.FindStringExact(temp);
+            if (index == -1)
+                return;
+            comboBoxComNum.SelectedIndex = index;
         }
     }
 }
