@@ -18,6 +18,14 @@ namespace GimbleAssistant
         private Boolean anoStatus = false;
         private bool AllowSelect = true;
         private bool normalUpdate = true;
+        private enum serialTypeS
+        {
+            normal,
+            status,
+        };
+        private List<CheckBox> statusCheckBox = new List<CheckBox>(16);
+        private TabPage lastPage, currenPage;
+        private serialTypeS serialType = serialTypeS.normal;
         private Queue<float> dataQueueCh1 = new Queue<float>();
         private Queue<float> dataQueueCh2 = new Queue<float>();
         private Queue<float> dataQueueCh3 = new Queue<float>();
@@ -55,6 +63,12 @@ namespace GimbleAssistant
             toolTip1.AutoPopDelay = 10000; toolTip1.InitialDelay = 500; toolTip1.ReshowDelay = 500;
             toolTip1.ShowAlways = true;
             toolTip1.SetToolTip(this.button8, "1.确保云台BootLoader完好\r\n2.确保串口连接正常\r\n3.切断云台供电\r\n4.选择用于修复的固件\r\n5.点击修复按钮\r\n6.在5S内给云台重新上电");
+
+            statusCheckBox.Clear();
+            statusCheckBox.Add(checkBox5);//mlx1
+            statusCheckBox.Add(checkBox4);//mlx2
+            statusCheckBox.Add(checkBox3);//mlx3
+            statusCheckBox.Add(checkBox2);//imu
         }
 
         private void AnoSwitch(Boolean status)
@@ -80,6 +94,23 @@ namespace GimbleAssistant
                 {
                     serialPort1.Write("q");
                     button7.Text = "打开波形显示";
+                }
+            }
+        }
+
+        private void statusSwitch(Boolean status)
+        {
+            if (serialPort1.IsOpen)
+            {
+                if (status)
+                {
+                    serialType = serialTypeS.status;
+                    serialPort1.Write("status c\r\n");
+                }
+                else
+                {
+                    serialType = serialTypeS.normal;
+                    serialPort1.Write("q");
                 }
             }
         }
@@ -227,13 +258,49 @@ namespace GimbleAssistant
             }
             else
             {
-                //因为要访问UI资源，所以需要使用invoke方式同步ui
-                this.Invoke((EventHandler)(delegate
+                switch(serialType)
                 {
-                    textBox1.AppendText(serialPort1.ReadExisting());
+                    case serialTypeS.normal:
+                        //因为要访问UI资源，所以需要使用invoke方式同步ui
+                        this.Invoke((EventHandler)(delegate
+                        {
+                            textBox1.AppendText(serialPort1.ReadExisting());
+                        }
+                            )
+                        );
+                        break;
+                    case serialTypeS.status:
+                        byte[] buff = new byte[1000];
+                        float[] data = new float[3];
+                        int num = serialPort1.BytesToRead;
+                        serialPort1.Read(buff, 0, num);
+                        if (buff[0] == 0xAA && buff[1] == 0xAA)
+                        {
+                            UInt16 temp, i = 0, j = 0;
+                            temp = BitConverter.ToUInt16(buff, 4);
+                            for(i = 0x0001, j = 0; i <= 0x0008; i<<=1, j++)
+                            {
+
+                                //因为要访问UI资源，所以需要使用invoke方式同步ui
+                                this.Invoke((EventHandler)(delegate
+                                {
+                                    if ((temp & i) != 0)
+                                    {
+                                        statusCheckBox[j].Checked = true;
+                                        statusCheckBox[j].BackColor = Color.Firebrick;
+                                    }
+                                    else
+                                    {
+                                        statusCheckBox[j].Checked = false;
+                                        statusCheckBox[j].BackColor = Color.Transparent;
+                                    }
+                                }
+                                    )
+                                );
+                            }
+                        }
+                        break;
                 }
-                    )
-                );
             }
         }
 
@@ -388,36 +455,29 @@ namespace GimbleAssistant
             }
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-
-            if (anoStatus)
+            lastPage = currenPage;
+            currenPage = e.TabPage;
+            if(lastPage != currenPage)
             {
-                if (e.TabPage != tabPage2)
+                if(lastPage == tabPage2)//ANO
                 {
                     AnoSwitch(false);
                 }
-            }
-            else
-            {
-                if (e.TabPage == tabPage2)
+                else if(lastPage == tabPage4)//status
+                {
+                    statusSwitch(false);
+                }
+
+                if(currenPage == tabPage2)//ANO
                 {
                     AnoSwitch(true);
                 }
-            }
-
-
-            if (e.TabPage == tabPage1)
-            {
-
-            }
-            else if (e.TabPage == tabPage3)
-            {
+                else if(currenPage == tabPage4)//status
+                {
+                    statusSwitch(true);
+                }
             }
         }
 
@@ -633,6 +693,11 @@ namespace GimbleAssistant
             if (index == -1)
                 return;
             comboBoxComNum.SelectedIndex = index;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
