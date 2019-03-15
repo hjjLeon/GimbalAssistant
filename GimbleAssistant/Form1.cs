@@ -9,12 +9,12 @@ namespace GimbleAssistant
 {
     public partial class Form1 : Form
     {
-        public List<float> x1 = new List<float>(1000);
-        public List<float> y1 = new List<float>(1000);
-        public List<float> x2 = new List<float>(1000);
-        public List<float> y2 = new List<float>(1000);
-        public List<float> x3 = new List<float>(1000);
-        public List<float> y3 = new List<float>(1000);
+        private List<float> x1 = new List<float>(1000);
+        private List<float> y1 = new List<float>(1000);
+        private List<float> x2 = new List<float>(1000);
+        private List<float> y2 = new List<float>(1000);
+        private List<float> x3 = new List<float>(1000);
+        private List<float> y3 = new List<float>(1000);
         private Boolean anoStatus = false;
         private bool AllowSelect = true;
         private bool normalUpdate = true;
@@ -134,6 +134,7 @@ namespace GimbleAssistant
 
         }
 
+        #region 功能函数
         private void AnoSwitch(Boolean status)
         {
             if (serialPort1.IsOpen)
@@ -269,6 +270,8 @@ namespace GimbleAssistant
             temp = BitConverter.ToInt16(buff, offset + 4);
             data[2] = Convert.ToSingle(temp);
         }
+        #endregion
+
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -388,8 +391,25 @@ namespace GimbleAssistant
                                 );
                             }
                         }
-
-                            break;
+                        else if (buff[0] == 's' && buff[1] == 'p' && buff[2] == 'd')
+                        {
+                            if (buff[9] == 0xAA && buff[10] == 0xAA)
+                            {
+                                UInt16 P = BitConverter.ToUInt16(buff, 13);
+                                UInt16 R = BitConverter.ToUInt16(buff, 15);
+                                UInt16 Y = BitConverter.ToUInt16(buff, 17);
+                                //因为要访问UI资源，所以需要使用invoke方式同步ui
+                                this.Invoke((EventHandler)(delegate
+                                {
+                                    numericUpDown2.Value = P;
+                                    numericUpDown3.Value = R;
+                                    numericUpDown4.Value = Y;
+                                }
+                                    )
+                                );
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -570,6 +590,10 @@ namespace GimbleAssistant
                 {
                     //statusSwitch(true);
                     serialType = serialTypeS.status;
+                    if(serialPort1.IsOpen)
+                    {
+                        serialPort1.WriteLine("spdconf");
+                    }
                     timer1.Start();
                 }
             }
@@ -771,12 +795,7 @@ namespace GimbleAssistant
 
             }
         }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void comboBoxComNum_Click(object sender, EventArgs e)
         {
             String temp = (String)comboBoxComNum.SelectedItem;
@@ -814,6 +833,15 @@ namespace GimbleAssistant
                 }
             }
         }
+
+        private void SpdValueChanged(object sender, EventArgs e)
+        {
+            if(serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine("spdconf " + numericUpDown2.Value + " " + numericUpDown3.Value + " " + numericUpDown4.Value + " ");
+            }
+        }
+
         private void pidSbClick(object sender, EventArgs e)
         {
             if(serialPort1.IsOpen)
@@ -832,10 +860,6 @@ namespace GimbleAssistant
                 }
             }
         }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -744,6 +744,7 @@
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(120, 21);
             this.numericUpDown4.TabIndex = 3;
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.SpdValueChanged);
             // 
             // groupBox10
             // 
@@ -984,6 +985,7 @@
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(120, 21);
             this.numericUpDown3.TabIndex = 3;
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.SpdValueChanged);
             // 
             // groupBox6
             // 
@@ -1224,6 +1226,7 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(120, 21);
             this.numericUpDown2.TabIndex = 3;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.SpdValueChanged);
             // 
             // groupBox3
             // 
