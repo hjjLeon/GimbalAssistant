@@ -24,6 +24,9 @@ namespace GimbleAssistant
             status,
         };
         private List<CheckBox> statusCheckBox = new List<CheckBox>(16);
+        private List<List<TextBox>> pidList = new List<List<TextBox>>(6);
+        private List<Button> pidRbList = new List<Button>();
+        private List<Button> pidSbList = new List<Button>();
         private TabPage lastPage, currenPage;
         private serialTypeS serialType = serialTypeS.normal;
         private Queue<float> dataQueueCh1 = new Queue<float>();
@@ -69,6 +72,66 @@ namespace GimbleAssistant
             statusCheckBox.Add(checkBox4);//mlx2
             statusCheckBox.Add(checkBox3);//mlx3
             statusCheckBox.Add(checkBox2);//imu
+            statusCheckBox.Add(checkBox6);//CAN
+            statusCheckBox.Add(checkBox9);//mt1
+            statusCheckBox.Add(checkBox8);//mt2
+            statusCheckBox.Add(checkBox7);//mt3
+
+            timer1.Stop();
+
+            List<TextBox> temp = new List<TextBox>();
+            temp.Clear();
+            temp.Add(textBox4);
+            temp.Add(textBox5);
+            temp.Add(textBox6);
+            pidList.Add(temp);
+            temp = new List<TextBox>();
+            temp.Clear();
+            temp.Add(textBox12);
+            temp.Add(textBox11);
+            temp.Add(textBox10);
+            pidList.Add(temp);
+            temp = new List<TextBox>();
+            temp.Clear();
+            temp.Add(textBox18);
+            temp.Add(textBox17);
+            temp.Add(textBox16);
+            pidList.Add(temp);
+            temp = new List<TextBox>();
+            temp.Clear();
+            temp.Add(textBox9);
+            temp.Add(textBox8);
+            temp.Add(textBox7);
+            pidList.Add(temp);
+            temp = new List<TextBox>();
+            temp.Clear();
+            temp.Add(textBox15);
+            temp.Add(textBox14);
+            temp.Add(textBox13);
+            pidList.Add(temp);
+            temp = new List<TextBox>();
+            temp.Clear();
+            temp.Add(textBox21);
+            temp.Add(textBox20);
+            temp.Add(textBox19);
+            pidList.Add(temp);
+
+            pidRbList.Clear();
+            pidRbList.Add(button13);
+            pidRbList.Add(button11);
+            pidRbList.Add(button17);
+            pidRbList.Add(button9);
+            pidRbList.Add(button15);
+            pidRbList.Add(button19);
+
+            pidSbList.Clear();
+            pidSbList.Add(button12);
+            pidSbList.Add(button14);
+            pidSbList.Add(button18);
+            pidSbList.Add(button10);
+            pidSbList.Add(button16);
+            pidSbList.Add(button20);
+
         }
 
         private void AnoSwitch(Boolean status)
@@ -271,35 +334,62 @@ namespace GimbleAssistant
                         break;
                     case serialTypeS.status:
                         byte[] buff = new byte[1000];
-                        float[] data = new float[3];
                         int num = serialPort1.BytesToRead;
                         serialPort1.Read(buff, 0, num);
-                        if (buff[0] == 0xAA && buff[1] == 0xAA)
+                        if(buff[0] == 's' && buff[1] == 't' && buff[2] == 'a' && buff[3] == 't' && buff[4] == 'u' && buff[5] == 's')
                         {
-                            UInt16 temp, i = 0, j = 0;
-                            temp = BitConverter.ToUInt16(buff, 4);
-                            for(i = 0x0001, j = 0; i <= 0x0008; i<<=1, j++)
+                            if (buff[8] == 0xAA && buff[9] == 0xAA)
                             {
+                                UInt16 temp, i = 0, j = 0;
+                                temp = BitConverter.ToUInt16(buff, 12);
+                                for (i = 0x0001, j = 0; i <= 0x0080; i <<= 1, j++)
+                                {
 
+                                    //因为要访问UI资源，所以需要使用invoke方式同步ui
+                                    this.Invoke((EventHandler)(delegate
+                                    {
+                                        if ((temp & i) != 0)
+                                        {
+                                            statusCheckBox[j].Checked = true;
+                                            statusCheckBox[j].BackColor = Color.Red;
+                                            statusCheckBox[j].ForeColor = Color.White;
+                                        }
+                                        else
+                                        {
+                                            statusCheckBox[j].Checked = false;
+                                            statusCheckBox[j].BackColor = Color.Transparent;
+                                            statusCheckBox[j].ForeColor = Color.Black;
+                                        }
+                                    }
+                                        )
+                                    );
+                                }
+                            }
+                        }
+                        else if (buff[0] == 'p' && buff[1] == 'i' && buff[2] == 'd')
+                        {
+                            if (buff[11] == 0xAA && buff[12] == 0xAA)
+                            {
+                                UInt16 i = 0, j = 0;
+                                float P = BitConverter.ToSingle(buff, 15);
+                                float I = BitConverter.ToSingle(buff, 19);
+                                float D = BitConverter.ToSingle(buff, 23);
                                 //因为要访问UI资源，所以需要使用invoke方式同步ui
                                 this.Invoke((EventHandler)(delegate
                                 {
-                                    if ((temp & i) != 0)
-                                    {
-                                        statusCheckBox[j].Checked = true;
-                                        statusCheckBox[j].BackColor = Color.Firebrick;
-                                    }
-                                    else
-                                    {
-                                        statusCheckBox[j].Checked = false;
-                                        statusCheckBox[j].BackColor = Color.Transparent;
-                                    }
+                                    pidList[pidLastRead][0].Clear();
+                                    pidList[pidLastRead][0].Text += P.ToString();
+                                    pidList[pidLastRead][1].Clear();
+                                    pidList[pidLastRead][1].Text += I.ToString();
+                                    pidList[pidLastRead][2].Clear();
+                                    pidList[pidLastRead][2].Text += D.ToString();
                                 }
                                     )
                                 );
                             }
                         }
-                        break;
+
+                            break;
                 }
             }
         }
@@ -467,7 +557,9 @@ namespace GimbleAssistant
                 }
                 else if(lastPage == tabPage4)//status
                 {
-                    statusSwitch(false);
+                    //statusSwitch(false);
+                    serialType = serialTypeS.normal;
+                    timer1.Stop();
                 }
 
                 if(currenPage == tabPage2)//ANO
@@ -476,7 +568,9 @@ namespace GimbleAssistant
                 }
                 else if(currenPage == tabPage4)//status
                 {
-                    statusSwitch(true);
+                    //statusSwitch(true);
+                    serialType = serialTypeS.status;
+                    timer1.Start();
                 }
             }
         }
@@ -693,6 +787,50 @@ namespace GimbleAssistant
             if (index == -1)
                 return;
             comboBoxComNum.SelectedIndex = index;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine("status");
+            }
+        }
+
+        private int pidLastRead = -1;
+        private void pidRbClick(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                for (i = 0; i < pidRbList.Count; i++)
+                {
+                    if (sender == pidRbList[i])
+                    {
+                        serialPort1.WriteLine("pidconf " + i);
+                        pidLastRead = i;
+                        break;
+                    }
+                }
+            }
+        }
+        private void pidSbClick(object sender, EventArgs e)
+        {
+            if(serialPort1.IsOpen)
+            {
+                int i;
+                for (i = 0; i < pidSbList.Count; i++)
+                {
+                    if (sender == pidSbList[i])
+                    {
+                        serialPort1.Write("pidconf " + i + " ");
+                        serialPort1.Write(pidList[i][0].Text + " ");
+                        serialPort1.Write(pidList[i][1].Text + " ");
+                        serialPort1.WriteLine(pidList[i][2].Text);
+                        break;
+                    }
+                }
+            }
         }
 
         private void button13_Click(object sender, EventArgs e)

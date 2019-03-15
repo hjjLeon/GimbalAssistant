@@ -161,6 +161,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -808,6 +809,7 @@
             this.button17.TabIndex = 8;
             this.button17.Text = "read";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.pidRbClick);
             // 
             // button18
             // 
@@ -817,6 +819,7 @@
             this.button18.TabIndex = 7;
             this.button18.Text = "setall";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.pidSbClick);
             // 
             // textBox16
             // 
@@ -906,6 +909,7 @@
             this.button19.TabIndex = 8;
             this.button19.Text = "read";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.pidRbClick);
             // 
             // button20
             // 
@@ -915,6 +919,7 @@
             this.button20.TabIndex = 7;
             this.button20.Text = "setall";
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.pidSbClick);
             // 
             // textBox19
             // 
@@ -1044,6 +1049,7 @@
             this.button11.TabIndex = 8;
             this.button11.Text = "read";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.pidRbClick);
             // 
             // button14
             // 
@@ -1053,6 +1059,7 @@
             this.button14.TabIndex = 7;
             this.button14.Text = "setall";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.pidSbClick);
             // 
             // textBox10
             // 
@@ -1142,6 +1149,7 @@
             this.button15.TabIndex = 8;
             this.button15.Text = "read";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.pidRbClick);
             // 
             // button16
             // 
@@ -1151,6 +1159,7 @@
             this.button16.TabIndex = 7;
             this.button16.Text = "setall";
             this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.pidSbClick);
             // 
             // textBox13
             // 
@@ -1183,7 +1192,7 @@
             this.groupBox7.Location = new System.Drawing.Point(0, 102);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(641, 128);
-            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabIndex = 9;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "俯仰轴参数";
             // 
@@ -1280,7 +1289,7 @@
             this.button13.TabIndex = 8;
             this.button13.Text = "read";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.button13.Click += new System.EventHandler(this.pidRbClick);
             // 
             // button12
             // 
@@ -1290,6 +1299,7 @@
             this.button12.TabIndex = 7;
             this.button12.Text = "setall";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.pidSbClick);
             // 
             // textBox6
             // 
@@ -1379,6 +1389,7 @@
             this.button9.TabIndex = 8;
             this.button9.Text = "read";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.pidRbClick);
             // 
             // button10
             // 
@@ -1388,6 +1399,7 @@
             this.button10.TabIndex = 7;
             this.button10.Text = "setall";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.pidSbClick);
             // 
             // textBox7
             // 
@@ -1610,6 +1622,12 @@
             this.tabPage3.Text = "设置";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1729,8 +1747,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
@@ -1741,24 +1757,9 @@
         private System.Windows.Forms.CheckBox checkBox8;
         private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button21;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label24;
@@ -1807,13 +1808,31 @@
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }
 
