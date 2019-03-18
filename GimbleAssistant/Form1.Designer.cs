@@ -1745,9 +1745,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button6;
-
-        System.Threading.Thread downloadThread;
-        private Ymodem.Ymodem ymodem;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;

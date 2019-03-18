@@ -41,8 +41,12 @@ namespace GimbleAssistant
         private List<Button> pidRbList = new List<Button>();
         //PID设置按钮的集合
         private List<Button> pidSbList = new List<Button>();
-        //用于判断页面切入及切除的记录变量
+        //用于判断页面切入及切出的记录变量
         private TabPage lastPage, currenPage;
+        //Ymodem下载的线程
+        System.Threading.Thread downloadThread;
+        //Ymodem对象
+        private Ymodem.Ymodem ymodem;
         #endregion
 
         //页面初始化
