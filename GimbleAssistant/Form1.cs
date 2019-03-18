@@ -9,29 +9,43 @@ namespace GimbleAssistant
 {
     public partial class Form1 : Form
     {
+        #region 用于各功能的私有属性
+        //存储波形数据
         private List<float> x1 = new List<float>(1000);
         private List<float> y1 = new List<float>(1000);
         private List<float> x2 = new List<float>(1000);
         private List<float> y2 = new List<float>(1000);
         private List<float> x3 = new List<float>(1000);
         private List<float> y3 = new List<float>(1000);
+        private Queue<float> dataQueueCh1 = new Queue<float>();
+        private Queue<float> dataQueueCh2 = new Queue<float>();
+        private Queue<float> dataQueueCh3 = new Queue<float>();
+        //ANO波形显示开关标志
         private Boolean anoStatus = false;
+        //禁止切换标签页标志（用于固件升级时阻止误操作）
         private bool AllowSelect = true;
+        //固件升级或修复标志
         private bool normalUpdate = true;
+        //串口助手&参数状态解析标志
         private enum serialTypeS
         {
             normal,
             status,
         };
-        private List<CheckBox> statusCheckBox = new List<CheckBox>(16);
-        private List<List<TextBox>> pidList = new List<List<TextBox>>(6);
-        private List<Button> pidRbList = new List<Button>();
-        private List<Button> pidSbList = new List<Button>();
-        private TabPage lastPage, currenPage;
         private serialTypeS serialType = serialTypeS.normal;
-        private Queue<float> dataQueueCh1 = new Queue<float>();
-        private Queue<float> dataQueueCh2 = new Queue<float>();
-        private Queue<float> dataQueueCh3 = new Queue<float>();
+        //状态标志的集合
+        private List<CheckBox> statusCheckBox = new List<CheckBox>(16);
+        //PID数值框的集合
+        private List<List<TextBox>> pidList = new List<List<TextBox>>(6);
+        //PID读取按钮的集合
+        private List<Button> pidRbList = new List<Button>();
+        //PID设置按钮的集合
+        private List<Button> pidSbList = new List<Button>();
+        //用于判断页面切入及切除的记录变量
+        private TabPage lastPage, currenPage;
+        #endregion
+
+        //页面初始化
         public Form1()
         {
             InitializeComponent();
@@ -133,146 +147,8 @@ namespace GimbleAssistant
             pidSbList.Add(button20);
 
         }
-
-        #region 功能函数
-        private void AnoSwitch(Boolean status)
-        {
-            if (serialPort1.IsOpen)
-            {
-
-                anoStatus = status;
-
-                if (anoStatus)
-                {
-                    serialPort1.Write("ANO\r\n");
-                    button7.Text = "关闭波形显示";
-                    x1.Clear();
-                    y1.Clear();
-                    x2.Clear();
-                    y2.Clear();
-                    x3.Clear();
-                    y3.Clear();
-                    zGraphLoadPix();
-                }
-                else
-                {
-                    serialPort1.Write("q");
-                    button7.Text = "打开波形显示";
-                }
-            }
-        }
-
-        private void statusSwitch(Boolean status)
-        {
-            if (serialPort1.IsOpen)
-            {
-                if (status)
-                {
-                    serialType = serialTypeS.status;
-                    serialPort1.Write("status c\r\n");
-                }
-                else
-                {
-                    serialType = serialTypeS.normal;
-                    serialPort1.Write("q");
-                }
-            }
-        }
-
-        private void terminalSend()
-        {
-            if (serialPort1.IsOpen)
-            {
-                if (checkBox1.Checked)
-                {
-                    serialPort1.WriteLine(textBox2.Text);
-                }
-                else
-                {
-                    serialPort1.Write(textBox2.Text);
-                }
-            }
-        }
-
-        private void zGraphLoadPix()
-        {
-            zGraph1.f_ClearAllPix();
-            zGraph1.f_reXY();
-            if (checkedListBox2.GetItemChecked(0))
-            {
-                x1.Clear();
-                y1.Clear();
-                zGraph1.f_AddPix(ref x1, ref y1, Color.Blue, 2);
-            }
-            if (checkedListBox2.GetItemChecked(1))
-            {
-                x2.Clear();
-                y2.Clear();
-                zGraph1.f_AddPix(ref x2, ref y2, Color.Green, 2);
-            }                     
-            if (checkedListBox2.GetItemChecked(2))
-            {
-                x3.Clear();
-                y3.Clear();
-                zGraph1.f_AddPix(ref x3, ref y3, Color.Red, 2);
-            }
-
-        }
-
-        private void UpdateQueueValue(int ch, Queue<float> dataQueue, float data)
-        {
-
-            while(dataQueue.Count > numericUpDown1.Value-1)
-            {
-                dataQueue.Dequeue();
-            }
-            dataQueue.Enqueue(data);
-            
-            switch(ch)
-            {
-                case 1:
-                    y1.Clear();
-                    x1.Clear();
-                    for (int i = 0; i < dataQueue.Count; i++)
-                    {
-                        y1.Add(dataQueue.ElementAt(i));
-                        x1.Add((i + 1));
-                    }
-                    break;
-                case 2:
-                    y2.Clear();
-                    x2.Clear();
-                    for (int i = 0; i < dataQueue.Count; i++)
-                    {
-                        y2.Add(dataQueue.ElementAt(i));
-                        x2.Add((i + 1));
-                    }
-                    break;
-                case 3:
-                    y3.Clear();
-                    x3.Clear();
-                    for (int i = 0; i < dataQueue.Count; i++)
-                    {
-                        y3.Add(dataQueue.ElementAt(i));
-                        x3.Add((i + 1));
-                    }
-                    break;
-            }
-        }
         
-        private void AnoAnalysis(byte[] buff, int offset, ref float[] data)
-        {
-            Int16 temp;
-            temp = BitConverter.ToInt16(buff, offset + 0);
-            data[0] = Convert.ToSingle(temp);
-            temp = BitConverter.ToInt16(buff, offset + 2);
-            data[1] = Convert.ToSingle(temp);
-            temp = BitConverter.ToInt16(buff, offset + 4);
-            data[2] = Convert.ToSingle(temp);
-        }
-        #endregion
-
-
+        //串口处理函数
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             if (anoStatus)
@@ -281,7 +157,7 @@ namespace GimbleAssistant
                 float[] data = new float[3];
                 int num = serialPort1.BytesToRead;
                 serialPort1.Read(buff, 0, num);
-                if (buff[0]==0xAA && buff[1] == 0xAA)
+                if (buff[0] == 0xAA && buff[1] == 0xAA)
                 {
                     int dataLen = buff[3];
                     if (checkedListBox1.GetItemChecked(0))
@@ -324,7 +200,7 @@ namespace GimbleAssistant
             }
             else
             {
-                switch(serialType)
+                switch (serialType)
                 {
                     case serialTypeS.normal:
                         //因为要访问UI资源，所以需要使用invoke方式同步ui
@@ -339,7 +215,7 @@ namespace GimbleAssistant
                         byte[] buff = new byte[1000];
                         int num = serialPort1.BytesToRead;
                         serialPort1.Read(buff, 0, num);
-                        if(buff[0] == 's' && buff[1] == 't' && buff[2] == 'a' && buff[3] == 't' && buff[4] == 'u' && buff[5] == 's')
+                        if (buff[0] == 's' && buff[1] == 't' && buff[2] == 'a' && buff[3] == 't' && buff[4] == 'u' && buff[5] == 's')
                         {
                             if (buff[8] == 0xAA && buff[9] == 0xAA)
                             {
@@ -414,83 +290,86 @@ namespace GimbleAssistant
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        #region 标签页控件
+        //标签页切换中事件
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            try
+            e.Cancel = !AllowSelect;
+        }
+
+        //标签页切换后事件
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            lastPage = currenPage;
+            currenPage = e.TabPage;
+            if (lastPage != currenPage)
             {
-                //将可能产生异常的代码放置在try块中
-                //根据当前串口属性来判断是否打开
-                if (serialPort1.IsOpen)
+                if (lastPage == tabPage2)//ANO
                 {
-                    //串口已经处于打开状态
-                    serialPort1.Close();    //关闭串口
-                    button1.Text = "打开串口";
-                    button1.BackColor = Color.ForestGreen;
-                    comboBoxBaud.Enabled = true;
-                    comboBoxDataSize.Enabled = true;
-                    comboBoxjiaoyan.Enabled = true;
-                    comboBoxStopBit.Enabled = true;
-                    comboBoxComNum.Enabled = true;
-                    textBox1.Text = "";  //清空接收区
-                    textBox2.Text = "";     //清空发送区
+                    AnoSwitch(false);
                 }
-                else
+                else if (lastPage == tabPage4)//status
                 {
-                    //串口已经处于关闭状态，则设置好串口属性后打开
-                    comboBoxBaud.Enabled = false;
-                    comboBoxDataSize.Enabled = false;
-                    comboBoxjiaoyan.Enabled = false;
-                    comboBoxStopBit.Enabled = false;
-                    comboBoxComNum.Enabled = false;
-                    serialPort1.PortName = comboBoxComNum.Text;
-                    serialPort1.BaudRate = Convert.ToInt32(comboBoxBaud.Text);
-                    serialPort1.DataBits = Convert.ToInt16(comboBoxDataSize.Text);
-
-                    if (comboBoxjiaoyan.Text.Equals("None"))
-                        serialPort1.Parity = System.IO.Ports.Parity.None;
-                    else if (comboBoxjiaoyan.Text.Equals("Odd"))
-                        serialPort1.Parity = System.IO.Ports.Parity.Odd;
-                    else if (comboBoxjiaoyan.Text.Equals("Even"))
-                        serialPort1.Parity = System.IO.Ports.Parity.Even;
-                    else if (comboBoxjiaoyan.Text.Equals("Mark"))
-                        serialPort1.Parity = System.IO.Ports.Parity.Mark;
-                    else if (comboBoxjiaoyan.Text.Equals("Space"))
-                        serialPort1.Parity = System.IO.Ports.Parity.Space;
-
-                    if (comboBoxStopBit.Text.Equals("1"))
-                        serialPort1.StopBits = System.IO.Ports.StopBits.One;
-                    else if (comboBoxStopBit.Text.Equals("1.5"))
-                        serialPort1.StopBits = System.IO.Ports.StopBits.OnePointFive;
-                    else if (comboBoxStopBit.Text.Equals("2"))
-                        serialPort1.StopBits = System.IO.Ports.StopBits.Two;
-
-                    serialPort1.Open();     //打开串口
-                    button1.Text = "关闭串口";
-                    button1.BackColor = Color.Firebrick;
+                    //statusSwitch(false);
+                    serialType = serialTypeS.normal;
+                    timer1.Stop();
                 }
-            }
-            catch (Exception ex)
-            {
-                //捕获可能发生的异常并进行处理
 
-                //捕获到异常，创建一个新的对象，之前的不可以再用
-                serialPort1 = new System.IO.Ports.SerialPort();
-                //刷新COM口选项
-                comboBoxComNum.Items.Clear();
-                comboBoxComNum.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
-                //响铃并显示异常给用户
-                System.Media.SystemSounds.Beep.Play();
-                button1.Text = "打开串口";
-                button1.BackColor = Color.ForestGreen;
-                MessageBox.Show(ex.Message);
-                comboBoxBaud.Enabled = true;
-                comboBoxDataSize.Enabled = true;
-                comboBoxjiaoyan.Enabled = true;
-                comboBoxStopBit.Enabled = true;
-                comboBoxComNum.Enabled = true;
+                if (currenPage == tabPage2)//ANO
+                {
+                    AnoSwitch(true);
+                }
+                else if (currenPage == tabPage4)//status
+                {
+                    //statusSwitch(true);
+                    serialType = serialTypeS.status;
+                    if (serialPort1.IsOpen)
+                    {
+                        serialPort1.WriteLine("spdconf");
+                    }
+                    timer1.Start();
+                }
             }
         }
 
+        #endregion
+
+        #region 串口助手
+        //发送框键盘点击事件
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter && checkBox1.Checked)
+            {
+                e.Handled = true;
+            }
+        }
+
+        //发送框键盘按下事件
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                if (e.KeyData == (Keys.Enter) && checkBox1.Checked)
+                {
+                    e.Handled = true;
+                    terminalSend();
+                }
+            }
+        }
+        
+        //接收框清空按钮
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        //发送框清空按钮
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = "";
+        }
+        
+        //串口发送按钮
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -519,41 +398,26 @@ namespace GimbleAssistant
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        //串口发送函数
+        private void terminalSend()
         {
-            if(anoStatus)
+            if (serialPort1.IsOpen)
             {
-                AnoSwitch(false);
+                if (checkBox1.Checked)
+                {
+                    serialPort1.WriteLine(textBox2.Text);
+                }
+                else
+                {
+                    serialPort1.Write(textBox2.Text);
+                }
             }
-            else
-            {
-                AnoSwitch(true);
-            }
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            zGraphLoadPix();
-        }
+        #endregion
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            zGraphLoadPix();
-            dataQueueCh1.Clear();
-            dataQueueCh2.Clear();
-            dataQueueCh3.Clear();
-        }
-
-        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            zGraphLoadPix();
-        }
-
-        private void checkedListBox2_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            //zGraphLoadPix();
-        }
-
+        #region 波形显示
+        //检查波形类型为单选
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
@@ -565,70 +429,219 @@ namespace GimbleAssistant
             }
         }
 
-        private void tabControl1_Selected(object sender, TabControlEventArgs e)
-        {
-            lastPage = currenPage;
-            currenPage = e.TabPage;
-            if(lastPage != currenPage)
-            {
-                if(lastPage == tabPage2)//ANO
-                {
-                    AnoSwitch(false);
-                }
-                else if(lastPage == tabPage4)//status
-                {
-                    //statusSwitch(false);
-                    serialType = serialTypeS.normal;
-                    timer1.Stop();
-                }
-
-                if(currenPage == tabPage2)//ANO
-                {
-                    AnoSwitch(true);
-                }
-                else if(currenPage == tabPage4)//status
-                {
-                    //statusSwitch(true);
-                    serialType = serialTypeS.status;
-                    if(serialPort1.IsOpen)
-                    {
-                        serialPort1.WriteLine("spdconf");
-                    }
-                    timer1.Start();
-                }
-            }
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter && checkBox1.Checked)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        //波形显示开关函数
+        private void AnoSwitch(Boolean status)
         {
             if (serialPort1.IsOpen)
             {
-                if (e.KeyData == (Keys.Enter) && checkBox1.Checked)
+
+                anoStatus = status;
+
+                if (anoStatus)
                 {
-                    e.Handled = true;
-                    terminalSend();
+                    serialPort1.Write("ANO\r\n");
+                    button7.Text = "关闭波形显示";
+                    x1.Clear();
+                    y1.Clear();
+                    x2.Clear();
+                    y2.Clear();
+                    x3.Clear();
+                    y3.Clear();
+                    zGraphLoadPix();
+                }
+                else
+                {
+                    serialPort1.Write("q");
+                    button7.Text = "打开波形显示";
                 }
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        //波形数据重新加载
+        private void zGraphLoadPix()
         {
-            textBox1.Text = "";
+            zGraph1.f_ClearAllPix();
+            zGraph1.f_reXY();
+            if (checkedListBox2.GetItemChecked(0))
+            {
+                x1.Clear();
+                y1.Clear();
+                zGraph1.f_AddPix(ref x1, ref y1, Color.Blue, 2);
+            }
+            if (checkedListBox2.GetItemChecked(1))
+            {
+                x2.Clear();
+                y2.Clear();
+                zGraph1.f_AddPix(ref x2, ref y2, Color.Green, 2);
+            }
+            if (checkedListBox2.GetItemChecked(2))
+            {
+                x3.Clear();
+                y3.Clear();
+                zGraph1.f_AddPix(ref x3, ref y3, Color.Red, 2);
+            }
+
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        //波形数据平移
+        private void UpdateQueueValue(int ch, Queue<float> dataQueue, float data)
         {
-            textBox2.Text = "";
+
+            while (dataQueue.Count > numericUpDown1.Value - 1)
+            {
+                dataQueue.Dequeue();
+            }
+            dataQueue.Enqueue(data);
+
+            switch (ch)
+            {
+                case 1:
+                    y1.Clear();
+                    x1.Clear();
+                    for (int i = 0; i < dataQueue.Count; i++)
+                    {
+                        y1.Add(dataQueue.ElementAt(i));
+                        x1.Add((i + 1));
+                    }
+                    break;
+                case 2:
+                    y2.Clear();
+                    x2.Clear();
+                    for (int i = 0; i < dataQueue.Count; i++)
+                    {
+                        y2.Add(dataQueue.ElementAt(i));
+                        x2.Add((i + 1));
+                    }
+                    break;
+                case 3:
+                    y3.Clear();
+                    x3.Clear();
+                    for (int i = 0; i < dataQueue.Count; i++)
+                    {
+                        y3.Add(dataQueue.ElementAt(i));
+                        x3.Add((i + 1));
+                    }
+                    break;
+            }
         }
 
+        //波形数据解析
+        private void AnoAnalysis(byte[] buff, int offset, ref float[] data)
+        {
+            Int16 temp;
+            temp = BitConverter.ToInt16(buff, offset + 0);
+            data[0] = Convert.ToSingle(temp);
+            temp = BitConverter.ToInt16(buff, offset + 2);
+            data[1] = Convert.ToSingle(temp);
+            temp = BitConverter.ToInt16(buff, offset + 4);
+            data[2] = Convert.ToSingle(temp);
+        }
+
+        //波形显示开关按钮
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (anoStatus)
+            {
+                AnoSwitch(false);
+            }
+            else
+            {
+                AnoSwitch(true);
+            }
+        }
+
+        //改变波形周期
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            zGraphLoadPix();
+        }
+
+        //更换波形
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            zGraphLoadPix();
+            dataQueueCh1.Clear();
+            dataQueueCh2.Clear();
+            dataQueueCh3.Clear();
+        }
+
+        //更换通道
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            zGraphLoadPix();
+        }
+
+        #endregion
+
+        #region 状态及参数
+        #region 状态指示
+        //周期获取状态
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine("status");
+            }
+        }
+        #endregion
+
+        #region 转速设置
+        //数值变化后即设置转速
+        private void SpdValueChanged(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine("spdconf " + numericUpDown2.Value + " " + numericUpDown3.Value + " " + numericUpDown4.Value + " ");
+            }
+        }
+        #endregion
+
+        #region PID设置
+        //记录上次读取的是哪一组PID，用于正确显示读取回来的结果
+        private int pidLastRead = -1;
+
+        //读取一组PID
+        private void pidRbClick(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                for (i = 0; i < pidRbList.Count; i++)
+                {
+                    if (sender == pidRbList[i])
+                    {
+                        serialPort1.WriteLine("pidconf " + i);
+                        pidLastRead = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        //设置一组PID
+        private void pidSbClick(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                for (i = 0; i < pidSbList.Count; i++)
+                {
+                    if (sender == pidSbList[i])
+                    {
+                        serialPort1.Write("pidconf " + i + " ");
+                        serialPort1.Write(pidList[i][0].Text + " ");
+                        serialPort1.Write(pidList[i][1].Text + " ");
+                        serialPort1.WriteLine(pidList[i][2].Text);
+                        break;
+                    }
+                }
+            }
+        }
+        #endregion
+        #endregion
+
+        #region 固件升级
+        //固件选择按钮
         private void button5_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -637,7 +650,65 @@ namespace GimbleAssistant
                 this.textBox3.Text = openFileDialog.FileName.ToString();
             }
         }
+        
+        //固件修复按钮
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                button8.Text = "等待中...";
+                button6.Enabled = false;
+                button5.Enabled = false;
+                button8.Enabled = false;
+                AllowSelect = false;
 
+                for (i = 0; i < 30; i++)
+                {
+                    serialPort1.Write("l");
+                    if (serialPort1.BytesToRead != 0 && serialPort1.ReadByte() == 'C')
+                    {
+                        break;
+                    }
+                    button8.Text += ".";
+                    if (button8.Text.Length > 6)
+                    {
+                        button8.Text = "等待中.";
+                    }
+                    System.Threading.Thread.Sleep(200);
+                }
+                if (i >= 30)
+                {
+                    button6.Enabled = true;
+                    button5.Enabled = true;
+                    button8.Enabled = true;
+                    AllowSelect = true;
+                    return;
+                }
+
+                normalUpdate = false;
+
+                //因为要访问UI资源，所以需要使用invoke方式同步ui
+                this.Invoke((EventHandler)(delegate
+                {
+                    button8.Text = "修复中.";
+                }
+                ));
+
+                ymodem = new Ymodem.Ymodem();
+                ymodem.serialPort = serialPort1;
+                ymodem.Path = textBox3.Text.ToString();
+                ymodem.PortName = comboBoxComNum.SelectedItem.ToString();
+                ymodem.BaudRate = Convert.ToInt32(comboBoxBaud.SelectedItem.ToString());
+                downloadThread = new System.Threading.Thread(ymodem.YmodemUploadFile);
+                ymodem.NowDownloadProgressEvent += new EventHandler(NowDownloadProgressEvent);
+                ymodem.DownloadResultEvent += new EventHandler(DownloadFinishEvent);
+                downloadThread.Start();
+
+            }
+        }
+        
+        //固件升级按钮
         private void button6_Click(object sender, EventArgs e)
         {
             if (serialPort1.IsOpen)
@@ -734,68 +805,10 @@ namespace GimbleAssistant
             }
         }
         #endregion
+        #endregion
 
-        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            e.Cancel = !AllowSelect;
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            if (serialPort1.IsOpen)
-            {
-                int i;
-                button8.Text = "等待中...";
-                button6.Enabled = false;
-                button5.Enabled = false;
-                button8.Enabled = false;
-                AllowSelect = false;
-
-                for(i = 0; i < 30; i++)
-                {
-                    serialPort1.Write("l");
-                    if (serialPort1.BytesToRead != 0 && serialPort1.ReadByte() == 'C')
-                    {
-                        break;
-                    }
-                    button8.Text += ".";
-                    if (button8.Text.Length > 6)
-                    {
-                        button8.Text = "等待中.";
-                    }
-                    System.Threading.Thread.Sleep(200);
-                }
-                if(i >= 30)
-                {
-                    button6.Enabled = true;
-                    button5.Enabled = true;
-                    button8.Enabled = true;
-                    AllowSelect = true;
-                    return;
-                }
-
-                normalUpdate = false;
-
-                //因为要访问UI资源，所以需要使用invoke方式同步ui
-                this.Invoke((EventHandler)(delegate
-                {
-                    button8.Text = "修复中.";
-                }
-                ));
-
-                ymodem = new Ymodem.Ymodem();
-                ymodem.serialPort = serialPort1;
-                ymodem.Path = textBox3.Text.ToString();
-                ymodem.PortName = comboBoxComNum.SelectedItem.ToString();
-                ymodem.BaudRate = Convert.ToInt32(comboBoxBaud.SelectedItem.ToString());
-                downloadThread = new System.Threading.Thread(ymodem.YmodemUploadFile);
-                ymodem.NowDownloadProgressEvent += new EventHandler(NowDownloadProgressEvent);
-                ymodem.DownloadResultEvent += new EventHandler(DownloadFinishEvent);
-                downloadThread.Start();
-
-            }
-        }
-        
+        #region 串口设置
+        //串口号更新
         private void comboBoxComNum_Click(object sender, EventArgs e)
         {
             String temp = (String)comboBoxComNum.SelectedItem;
@@ -808,58 +821,85 @@ namespace GimbleAssistant
             comboBoxComNum.SelectedIndex = index;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        //串口开关按钮
+        private void button1_Click(object sender, EventArgs e)
         {
-            if(serialPort1.IsOpen)
+            try
             {
-                serialPort1.WriteLine("status");
-            }
-        }
-
-        private int pidLastRead = -1;
-        private void pidRbClick(object sender, EventArgs e)
-        {
-            if (serialPort1.IsOpen)
-            {
-                int i;
-                for (i = 0; i < pidRbList.Count; i++)
+                //将可能产生异常的代码放置在try块中
+                //根据当前串口属性来判断是否打开
+                if (serialPort1.IsOpen)
                 {
-                    if (sender == pidRbList[i])
-                    {
-                        serialPort1.WriteLine("pidconf " + i);
-                        pidLastRead = i;
-                        break;
-                    }
+                    //串口已经处于打开状态
+                    serialPort1.Close();    //关闭串口
+                    button1.Text = "打开串口";
+                    button1.BackColor = Color.ForestGreen;
+                    comboBoxBaud.Enabled = true;
+                    comboBoxDataSize.Enabled = true;
+                    comboBoxjiaoyan.Enabled = true;
+                    comboBoxStopBit.Enabled = true;
+                    comboBoxComNum.Enabled = true;
+                    textBox1.Text = "";  //清空接收区
+                    textBox2.Text = "";     //清空发送区
+                }
+                else
+                {
+                    //串口已经处于关闭状态，则设置好串口属性后打开
+                    comboBoxBaud.Enabled = false;
+                    comboBoxDataSize.Enabled = false;
+                    comboBoxjiaoyan.Enabled = false;
+                    comboBoxStopBit.Enabled = false;
+                    comboBoxComNum.Enabled = false;
+                    serialPort1.PortName = comboBoxComNum.Text;
+                    serialPort1.BaudRate = Convert.ToInt32(comboBoxBaud.Text);
+                    serialPort1.DataBits = Convert.ToInt16(comboBoxDataSize.Text);
+
+                    if (comboBoxjiaoyan.Text.Equals("None"))
+                        serialPort1.Parity = System.IO.Ports.Parity.None;
+                    else if (comboBoxjiaoyan.Text.Equals("Odd"))
+                        serialPort1.Parity = System.IO.Ports.Parity.Odd;
+                    else if (comboBoxjiaoyan.Text.Equals("Even"))
+                        serialPort1.Parity = System.IO.Ports.Parity.Even;
+                    else if (comboBoxjiaoyan.Text.Equals("Mark"))
+                        serialPort1.Parity = System.IO.Ports.Parity.Mark;
+                    else if (comboBoxjiaoyan.Text.Equals("Space"))
+                        serialPort1.Parity = System.IO.Ports.Parity.Space;
+
+                    if (comboBoxStopBit.Text.Equals("1"))
+                        serialPort1.StopBits = System.IO.Ports.StopBits.One;
+                    else if (comboBoxStopBit.Text.Equals("1.5"))
+                        serialPort1.StopBits = System.IO.Ports.StopBits.OnePointFive;
+                    else if (comboBoxStopBit.Text.Equals("2"))
+                        serialPort1.StopBits = System.IO.Ports.StopBits.Two;
+
+                    serialPort1.Open();     //打开串口
+                    button1.Text = "关闭串口";
+                    button1.BackColor = Color.Firebrick;
                 }
             }
-        }
-
-        private void SpdValueChanged(object sender, EventArgs e)
-        {
-            if(serialPort1.IsOpen)
+            catch (Exception ex)
             {
-                serialPort1.WriteLine("spdconf " + numericUpDown2.Value + " " + numericUpDown3.Value + " " + numericUpDown4.Value + " ");
+                //捕获可能发生的异常并进行处理
+
+                //捕获到异常，创建一个新的对象，之前的不可以再用
+                serialPort1 = new System.IO.Ports.SerialPort();
+                //刷新COM口选项
+                comboBoxComNum.Items.Clear();
+                comboBoxComNum.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+                //响铃并显示异常给用户
+                System.Media.SystemSounds.Beep.Play();
+                button1.Text = "打开串口";
+                button1.BackColor = Color.ForestGreen;
+                MessageBox.Show(ex.Message);
+                comboBoxBaud.Enabled = true;
+                comboBoxDataSize.Enabled = true;
+                comboBoxjiaoyan.Enabled = true;
+                comboBoxStopBit.Enabled = true;
+                comboBoxComNum.Enabled = true;
             }
         }
 
-        private void pidSbClick(object sender, EventArgs e)
-        {
-            if(serialPort1.IsOpen)
-            {
-                int i;
-                for (i = 0; i < pidSbList.Count; i++)
-                {
-                    if (sender == pidSbList[i])
-                    {
-                        serialPort1.Write("pidconf " + i + " ");
-                        serialPort1.Write(pidList[i][0].Text + " ");
-                        serialPort1.Write(pidList[i][1].Text + " ");
-                        serialPort1.WriteLine(pidList[i][2].Text);
-                        break;
-                    }
-                }
-            }
-        }
-        
+        #endregion
+
     }
 }
