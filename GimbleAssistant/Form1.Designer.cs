@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button23 = new System.Windows.Forms.Button();
+            this.textBox22 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxDataSize = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -163,6 +165,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.button24 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -206,12 +210,34 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button24);
+            this.panel3.Controls.Add(this.textBox23);
+            this.panel3.Controls.Add(this.button23);
+            this.panel3.Controls.Add(this.textBox22);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(641, 546);
             this.panel3.TabIndex = 2;
+            // 
+            // button23
+            // 
+            this.button23.Location = new System.Drawing.Point(211, 232);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(75, 23);
+            this.button23.TabIndex = 13;
+            this.button23.Text = "button23";
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // textBox22
+            // 
+            this.textBox22.Location = new System.Drawing.Point(176, 3);
+            this.textBox22.Multiline = true;
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(462, 223);
+            this.textBox22.TabIndex = 12;
             // 
             // groupBox1
             // 
@@ -1631,6 +1657,23 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // textBox23
+            // 
+            this.textBox23.Location = new System.Drawing.Point(176, 261);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(140, 21);
+            this.textBox23.TabIndex = 14;
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(322, 261);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(75, 23);
+            this.button24.TabIndex = 15;
+            this.button24.Text = "button24";
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1642,6 +1685,7 @@
             this.Name = "Form1";
             this.Text = "GimbleAssistant V1.19.3";
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -1834,6 +1878,10 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.TextBox textBox23;
     }
 }
 

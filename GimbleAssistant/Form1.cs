@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Windows.Devices.Bluetooth;
 
 namespace GimbleAssistant
 {
@@ -149,6 +150,8 @@ namespace GimbleAssistant
             pidSbList.Add(button10);
             pidSbList.Add(button16);
             pidSbList.Add(button20);
+
+            bluetooth.ValueChanged += eventRun;
 
         }
         
@@ -905,5 +908,32 @@ namespace GimbleAssistant
 
         #endregion
 
+
+        private static string serviceGuid              = "00009501-0000-1000-8000-00805F9B34FB";
+        private static string writeCharacteristicGuid  = "00009511-0000-1000-8000-00805F9B34FB";
+        private static string notifyCharacteristicGuid = "00009512-0000-1000-8000-00805F9B34FB";
+        BluetoothLECode bluetooth = new BluetoothLECode(serviceGuid, writeCharacteristicGuid, notifyCharacteristicGuid);
+        private void eventRun(MsgType type, string str, byte[] data = null)
+        {
+           
+            //因为要访问UI资源，所以需要使用invoke方式同步ui
+            this.Invoke((EventHandler)(delegate
+            {
+                textBox22.Text += str + "\r\n";
+            }
+                )
+            );
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            bluetooth.Write(System.Text.Encoding.Default.GetBytes(textBox23.Text));
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            bluetooth.CurrentDeviceName = "Nordic_UART_leon";
+            bluetooth.StartBleDeviceWatcher();
+        }
     }
 }
