@@ -103,59 +103,42 @@ namespace GimbleAssistant
             temp.Add(textBox4);
             temp.Add(textBox5);
             temp.Add(textBox6);
+            temp.Add(textBox7);
+            temp.Add(textBox8);
             pidList.Add(temp);
             temp = new List<TextBox>();
             temp.Clear();
+            temp.Add(textBox13);
             temp.Add(textBox12);
             temp.Add(textBox11);
             temp.Add(textBox10);
+            temp.Add(textBox9);
             pidList.Add(temp);
             temp = new List<TextBox>();
             temp.Clear();
             temp.Add(textBox18);
             temp.Add(textBox17);
             temp.Add(textBox16);
-            pidList.Add(temp);
-            temp = new List<TextBox>();
-            temp.Clear();
-            temp.Add(textBox9);
-            temp.Add(textBox8);
-            temp.Add(textBox7);
-            pidList.Add(temp);
-            temp = new List<TextBox>();
-            temp.Clear();
             temp.Add(textBox15);
             temp.Add(textBox14);
-            temp.Add(textBox13);
-            pidList.Add(temp);
-            temp = new List<TextBox>();
-            temp.Clear();
-            temp.Add(textBox21);
-            temp.Add(textBox20);
-            temp.Add(textBox19);
             pidList.Add(temp);
 
             pidRbList.Clear();
-            pidRbList.Add(button13);
-            pidRbList.Add(button11);
-            pidRbList.Add(button17);
-            pidRbList.Add(button9);
-            pidRbList.Add(button15);
-            pidRbList.Add(button19);
+            pidRbList.Add(button10);
+            pidRbList.Add(button12);
+            pidRbList.Add(button14);
 
             pidSbList.Clear();
-            pidSbList.Add(button12);
-            pidSbList.Add(button14);
-            pidSbList.Add(button18);
-            pidSbList.Add(button10);
-            pidSbList.Add(button16);
-            pidSbList.Add(button20);
+            pidSbList.Add(button9);
+            pidSbList.Add(button11);
+            pidSbList.Add(button13);
 
             bluetooth.ValueChanged += eventRun;
 
         }
-        
+
         //串口处理函数
+        private int sp = 0;
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             if (anoStatus)
@@ -219,77 +202,97 @@ namespace GimbleAssistant
                         );
                         break;
                     case serialTypeS.status:
-                        byte[] buff = new byte[1000];
-                        int num = serialPort1.BytesToRead;
-                        serialPort1.Read(buff, 0, num);
-                        if (buff[0] == 's' && buff[1] == 't' && buff[2] == 'a' && buff[3] == 't' && buff[4] == 'u' && buff[5] == 's')
+                        if(sp == 0)
                         {
-                            if (buff[8] == 0xAA && buff[9] == 0xAA)
+                            string spType = serialPort1.ReadLine();
+                            if (spType.Contains("status"))
                             {
-                                UInt16 temp, i = 0, j = 0;
-                                temp = BitConverter.ToUInt16(buff, 12);
-                                for (i = 0x0001, j = 0; i <= 0x0080; i <<= 1, j++)
+                                sp = 1;
+                            }
+                            else if (spType.Contains("pidconf"))
+                            {
+                                sp = 2;
+                                while (true)
                                 {
+                                    if (serialPort1.BytesToRead >= 25)
+                                        break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            byte[] buff = new byte[1000];
+                            int num = serialPort1.BytesToRead;
+                            serialPort1.Read(buff, 0, num);
+                            if (sp == 1)
+                            {
+                                sp = 0;
+                                if (buff[0] == 0xAA && buff[1] == 0xAA)
+                                {
+                                    UInt16 temp, i = 0, j = 0;
+                                    temp = BitConverter.ToUInt16(buff, 4);
+                                    for (i = 0x0001, j = 0; i <= 0x0080; i <<= 1, j++)
+                                    {
 
+                                        //因为要访问UI资源，所以需要使用invoke方式同步ui
+                                        this.Invoke((EventHandler)(delegate
+                                        {
+                                            if ((temp & i) != 0)
+                                            {
+                                                statusCheckBox[j].Checked = true;
+                                                statusCheckBox[j].BackColor = Color.Red;
+                                                statusCheckBox[j].ForeColor = Color.White;
+                                            }
+                                            else
+                                            {
+                                                statusCheckBox[j].Checked = false;
+                                                statusCheckBox[j].BackColor = Color.Transparent;
+                                                statusCheckBox[j].ForeColor = Color.Black;
+                                            }
+                                        }
+                                            )
+                                        );
+                                    }
+                                }
+                            }
+                            else if (sp == 2)
+                            {
+                                sp = 0;
+                                if (buff[0] == 0xAA && buff[1] == 0xAA)
+                                {
+                                    /*int remainByte = buff[11 + 3] + 5 - (num - 11);
+                                    if (remainByte > 0)
+                                    {
+                                        while (true)
+                                        {
+                                            if (serialPort1.ReadBufferSize >= remainByte)
+                                                break;
+                                        }
+                                        serialPort1.Read(buff, num, remainByte);
+                                    }*/
+                                    UInt16 i = 0, j = 0;
+                                    float P = BitConverter.ToSingle(buff, 4);
+                                    float I = BitConverter.ToSingle(buff, 8);
+                                    float D = BitConverter.ToSingle(buff, 12);
+                                    float S = BitConverter.ToSingle(buff, 16);
+                                    float V = BitConverter.ToSingle(buff, 20);
                                     //因为要访问UI资源，所以需要使用invoke方式同步ui
                                     this.Invoke((EventHandler)(delegate
                                     {
-                                        if ((temp & i) != 0)
-                                        {
-                                            statusCheckBox[j].Checked = true;
-                                            statusCheckBox[j].BackColor = Color.Red;
-                                            statusCheckBox[j].ForeColor = Color.White;
-                                        }
-                                        else
-                                        {
-                                            statusCheckBox[j].Checked = false;
-                                            statusCheckBox[j].BackColor = Color.Transparent;
-                                            statusCheckBox[j].ForeColor = Color.Black;
-                                        }
+                                        pidList[pidLastRead][0].Clear();
+                                        pidList[pidLastRead][0].Text += P.ToString();
+                                        pidList[pidLastRead][1].Clear();
+                                        pidList[pidLastRead][1].Text += I.ToString();
+                                        pidList[pidLastRead][2].Clear();
+                                        pidList[pidLastRead][2].Text += D.ToString();
+                                        pidList[pidLastRead][3].Clear();
+                                        pidList[pidLastRead][3].Text += S.ToString();
+                                        pidList[pidLastRead][4].Clear();
+                                        pidList[pidLastRead][4].Text += V.ToString();
                                     }
                                         )
                                     );
                                 }
-                            }
-                        }
-                        else if (buff[0] == 'p' && buff[1] == 'i' && buff[2] == 'd')
-                        {
-                            if (buff[11] == 0xAA && buff[12] == 0xAA)
-                            {
-                                UInt16 i = 0, j = 0;
-                                float P = BitConverter.ToSingle(buff, 15);
-                                float I = BitConverter.ToSingle(buff, 19);
-                                float D = BitConverter.ToSingle(buff, 23);
-                                //因为要访问UI资源，所以需要使用invoke方式同步ui
-                                this.Invoke((EventHandler)(delegate
-                                {
-                                    pidList[pidLastRead][0].Clear();
-                                    pidList[pidLastRead][0].Text += P.ToString();
-                                    pidList[pidLastRead][1].Clear();
-                                    pidList[pidLastRead][1].Text += I.ToString();
-                                    pidList[pidLastRead][2].Clear();
-                                    pidList[pidLastRead][2].Text += D.ToString();
-                                }
-                                    )
-                                );
-                            }
-                        }
-                        else if (buff[0] == 's' && buff[1] == 'p' && buff[2] == 'd')
-                        {
-                            if (buff[9] == 0xAA && buff[10] == 0xAA)
-                            {
-                                UInt16 P = BitConverter.ToUInt16(buff, 13);
-                                UInt16 R = BitConverter.ToUInt16(buff, 15);
-                                UInt16 Y = BitConverter.ToUInt16(buff, 17);
-                                //因为要访问UI资源，所以需要使用invoke方式同步ui
-                                this.Invoke((EventHandler)(delegate
-                                {
-                                    numericUpDown2.Value = P;
-                                    numericUpDown3.Value = R;
-                                    numericUpDown4.Value = Y;
-                                }
-                                    )
-                                );
                             }
                         }
                         break;
@@ -591,18 +594,7 @@ namespace GimbleAssistant
             }
         }
         #endregion
-
-        #region 转速设置
-        //数值变化后即设置转速
-        private void SpdValueChanged(object sender, EventArgs e)
-        {
-            if (serialPort1.IsOpen)
-            {
-                serialPort1.WriteLine("spdconf " + numericUpDown2.Value + " " + numericUpDown3.Value + " " + numericUpDown4.Value + " ");
-            }
-        }
-        #endregion
-
+        
         #region PID设置
         //记录上次读取的是哪一组PID，用于正确显示读取回来的结果
         private int pidLastRead = -1;
@@ -638,13 +630,34 @@ namespace GimbleAssistant
                         serialPort1.Write("pidconf " + i + " ");
                         serialPort1.Write(pidList[i][0].Text + " ");
                         serialPort1.Write(pidList[i][1].Text + " ");
-                        serialPort1.WriteLine(pidList[i][2].Text);
+                        serialPort1.Write(pidList[i][2].Text + " ");
+                        serialPort1.Write(pidList[i][3].Text + " ");
+                        serialPort1.WriteLine(pidList[i][4].Text);
                         break;
                     }
                 }
             }
         }
         #endregion
+
+        //编码器校准
+        private void button21_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine("mlxaju");
+            }
+        }
+
+        //IMU校准
+        private void button22_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.WriteLine("imuaju");
+            }
+        }
+
         #endregion
 
         #region 固件升级
@@ -670,7 +683,8 @@ namespace GimbleAssistant
                 button8.Enabled = false;
                 AllowSelect = false;
 
-                for (i = 0; i < 30; i++)
+                //for (i = 0; i < 30; i++)
+                while(true)
                 {
                     serialPort1.Write("l");
                     if (serialPort1.BytesToRead != 0 && serialPort1.ReadByte() == 'C')
@@ -684,14 +698,14 @@ namespace GimbleAssistant
                     }
                     System.Threading.Thread.Sleep(200);
                 }
-                if (i >= 30)
+                /*if (i >= 30)
                 {
                     button6.Enabled = true;
                     button5.Enabled = true;
                     button8.Enabled = true;
                     AllowSelect = true;
                     return;
-                }
+                }*/
 
                 normalUpdate = false;
 
@@ -908,7 +922,7 @@ namespace GimbleAssistant
 
         #endregion
 
-
+        #region BT
         private static string serviceGuid              = "00009501-0000-1000-8000-00805F9B34FB";
         private static string writeCharacteristicGuid  = "00009511-0000-1000-8000-00805F9B34FB";
         private static string notifyCharacteristicGuid = "00009512-0000-1000-8000-00805F9B34FB";
@@ -930,10 +944,16 @@ namespace GimbleAssistant
             bluetooth.Write(System.Text.Encoding.Default.GetBytes(textBox23.Text));
         }
 
+        private void button25_Click(object sender, EventArgs e)
+        {
+            bluetooth.Dispose();
+        }
+
         private void button23_Click(object sender, EventArgs e)
         {
             bluetooth.CurrentDeviceName = "Nordic_UART_leon";
             bluetooth.StartBleDeviceWatcher();
         }
+        #endregion
     }
 }

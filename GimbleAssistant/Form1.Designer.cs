@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.textBox23 = new System.Windows.Forms.TextBox();
             this.button23 = new System.Windows.Forms.Button();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -74,77 +77,47 @@
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.label24 = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button14 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -165,8 +138,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.button24 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -181,26 +152,11 @@
             this.tabPage4.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            this.groupBox10.SuspendLayout();
-            this.panel15.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.panel16.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -210,6 +166,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button25);
             this.panel3.Controls.Add(this.button24);
             this.panel3.Controls.Add(this.textBox23);
             this.panel3.Controls.Add(this.button23);
@@ -220,6 +177,33 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(641, 546);
             this.panel3.TabIndex = 2;
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(224, 373);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(75, 23);
+            this.button25.TabIndex = 16;
+            this.button25.Text = "button25";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(322, 261);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(75, 23);
+            this.button24.TabIndex = 15;
+            this.button24.Text = "button24";
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // textBox23
+            // 
+            this.textBox23.Location = new System.Drawing.Point(176, 261);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(140, 21);
+            this.textBox23.TabIndex = 14;
             // 
             // button23
             // 
@@ -719,8 +703,9 @@
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(75, 23);
             this.button22.TabIndex = 1;
-            this.button22.Text = "电机校准";
+            this.button22.Text = "IMU校准";
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // button21
             // 
@@ -728,12 +713,13 @@
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(75, 23);
             this.button21.TabIndex = 0;
-            this.button21.Text = "IMU校准";
+            this.button21.Text = "编码器校准";
             this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.panel14);
+            this.groupBox9.Controls.Add(this.panel10);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox9.Location = new System.Drawing.Point(0, 358);
             this.groupBox9.Name = "groupBox9";
@@ -742,239 +728,129 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "航向轴参数";
             // 
-            // panel14
+            // panel10
             // 
-            this.panel14.Controls.Add(this.label24);
-            this.panel14.Controls.Add(this.numericUpDown4);
-            this.panel14.Controls.Add(this.groupBox10);
-            this.panel14.Controls.Add(this.groupBox11);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(3, 17);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(635, 108);
-            this.panel14.TabIndex = 0;
+            this.panel10.Controls.Add(this.button13);
+            this.panel10.Controls.Add(this.button14);
+            this.panel10.Controls.Add(this.label20);
+            this.panel10.Controls.Add(this.textBox14);
+            this.panel10.Controls.Add(this.label21);
+            this.panel10.Controls.Add(this.textBox15);
+            this.panel10.Controls.Add(this.label22);
+            this.panel10.Controls.Add(this.textBox16);
+            this.panel10.Controls.Add(this.label23);
+            this.panel10.Controls.Add(this.textBox17);
+            this.panel10.Controls.Add(this.label24);
+            this.panel10.Controls.Add(this.textBox18);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(3, 17);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(635, 108);
+            this.panel10.TabIndex = 1;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(345, 9);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(44, 75);
+            this.button13.TabIndex = 12;
+            this.button13.Text = "写入";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.pidSbClick);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(295, 9);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(44, 75);
+            this.button14.TabIndex = 11;
+            this.button14.Text = "读取";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.pidRbClick);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(154, 42);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(29, 12);
+            this.label20.TabIndex = 9;
+            this.label20.Text = "V ：";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(189, 39);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(100, 21);
+            this.textBox14.TabIndex = 8;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(154, 12);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(29, 12);
+            this.label21.TabIndex = 7;
+            this.label21.Text = "S ：";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(189, 9);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(100, 21);
+            this.textBox15.TabIndex = 6;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(5, 66);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(29, 12);
+            this.label22.TabIndex = 5;
+            this.label22.Text = "D ：";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(40, 63);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(100, 21);
+            this.textBox16.TabIndex = 4;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(5, 39);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(29, 12);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "I ：";
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(40, 36);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(100, 21);
+            this.textBox17.TabIndex = 2;
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label24.Location = new System.Drawing.Point(427, 64);
+            this.label24.Location = new System.Drawing.Point(5, 12);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(77, 12);
-            this.label24.TabIndex = 4;
-            this.label24.Text = "转向速度 ：";
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Location = new System.Drawing.Point(427, 79);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(120, 21);
-            this.numericUpDown4.TabIndex = 3;
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.SpdValueChanged);
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.panel15);
-            this.groupBox10.Location = new System.Drawing.Point(3, 3);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(212, 100);
-            this.groupBox10.TabIndex = 1;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "控制PID";
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.label25);
-            this.panel15.Controls.Add(this.label26);
-            this.panel15.Controls.Add(this.label27);
-            this.panel15.Controls.Add(this.button17);
-            this.panel15.Controls.Add(this.button18);
-            this.panel15.Controls.Add(this.textBox16);
-            this.panel15.Controls.Add(this.textBox17);
-            this.panel15.Controls.Add(this.textBox18);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel15.Location = new System.Drawing.Point(3, 17);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(206, 80);
-            this.panel15.TabIndex = 12;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label25.Location = new System.Drawing.Point(3, 62);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(33, 12);
-            this.label25.TabIndex = 11;
-            this.label25.Text = "D : ";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label26.Location = new System.Drawing.Point(3, 33);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(33, 12);
-            this.label26.TabIndex = 10;
-            this.label26.Text = "I : ";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label27.Location = new System.Drawing.Point(3, 6);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(33, 12);
-            this.label27.TabIndex = 9;
-            this.label27.Text = "P : ";
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(142, 28);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(61, 23);
-            this.button17.TabIndex = 8;
-            this.button17.Text = "read";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.pidRbClick);
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(142, 57);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(61, 23);
-            this.button18.TabIndex = 7;
-            this.button18.Text = "setall";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.pidSbClick);
-            // 
-            // textBox16
-            // 
-            this.textBox16.Location = new System.Drawing.Point(42, 59);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(94, 21);
-            this.textBox16.TabIndex = 3;
-            this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(42, 30);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(94, 21);
-            this.textBox17.TabIndex = 2;
-            this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label24.Size = new System.Drawing.Size(29, 12);
+            this.label24.TabIndex = 1;
+            this.label24.Text = "P ：";
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(42, 3);
+            this.textBox18.Location = new System.Drawing.Point(40, 9);
             this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(94, 21);
-            this.textBox18.TabIndex = 1;
-            this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.panel16);
-            this.groupBox11.Location = new System.Drawing.Point(215, 3);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(212, 100);
-            this.groupBox11.TabIndex = 2;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "电机PID";
-            // 
-            // panel16
-            // 
-            this.panel16.Controls.Add(this.label28);
-            this.panel16.Controls.Add(this.label29);
-            this.panel16.Controls.Add(this.label30);
-            this.panel16.Controls.Add(this.button19);
-            this.panel16.Controls.Add(this.button20);
-            this.panel16.Controls.Add(this.textBox19);
-            this.panel16.Controls.Add(this.textBox20);
-            this.panel16.Controls.Add(this.textBox21);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel16.Location = new System.Drawing.Point(3, 17);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(206, 80);
-            this.panel16.TabIndex = 13;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label28.Location = new System.Drawing.Point(3, 62);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(33, 12);
-            this.label28.TabIndex = 11;
-            this.label28.Text = "D : ";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label29.Location = new System.Drawing.Point(3, 33);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(33, 12);
-            this.label29.TabIndex = 10;
-            this.label29.Text = "I : ";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label30.Location = new System.Drawing.Point(3, 6);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(33, 12);
-            this.label30.TabIndex = 9;
-            this.label30.Text = "P : ";
-            // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(142, 28);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(61, 23);
-            this.button19.TabIndex = 8;
-            this.button19.Text = "read";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.pidRbClick);
-            // 
-            // button20
-            // 
-            this.button20.Location = new System.Drawing.Point(142, 57);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(61, 23);
-            this.button20.TabIndex = 7;
-            this.button20.Text = "setall";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.pidSbClick);
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(42, 59);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(94, 21);
-            this.textBox19.TabIndex = 3;
-            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox20
-            // 
-            this.textBox20.Location = new System.Drawing.Point(42, 30);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(94, 21);
-            this.textBox20.TabIndex = 2;
-            this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox21
-            // 
-            this.textBox21.Location = new System.Drawing.Point(42, 3);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(94, 21);
-            this.textBox21.TabIndex = 1;
-            this.textBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox18.Size = new System.Drawing.Size(100, 21);
+            this.textBox18.TabIndex = 0;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.panel10);
+            this.groupBox5.Controls.Add(this.panel9);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox5.Location = new System.Drawing.Point(0, 230);
             this.groupBox5.Name = "groupBox5";
@@ -983,239 +859,129 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "横滚轴参数";
             // 
-            // panel10
+            // panel9
             // 
-            this.panel10.Controls.Add(this.label16);
-            this.panel10.Controls.Add(this.numericUpDown3);
-            this.panel10.Controls.Add(this.groupBox6);
-            this.panel10.Controls.Add(this.groupBox8);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(3, 17);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(635, 108);
-            this.panel10.TabIndex = 0;
+            this.panel9.Controls.Add(this.button11);
+            this.panel9.Controls.Add(this.button12);
+            this.panel9.Controls.Add(this.label15);
+            this.panel9.Controls.Add(this.textBox9);
+            this.panel9.Controls.Add(this.label16);
+            this.panel9.Controls.Add(this.textBox10);
+            this.panel9.Controls.Add(this.label17);
+            this.panel9.Controls.Add(this.textBox11);
+            this.panel9.Controls.Add(this.label18);
+            this.panel9.Controls.Add(this.textBox12);
+            this.panel9.Controls.Add(this.label19);
+            this.panel9.Controls.Add(this.textBox13);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(3, 17);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(635, 108);
+            this.panel9.TabIndex = 1;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(345, 9);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(44, 75);
+            this.button11.TabIndex = 12;
+            this.button11.Text = "写入";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.pidSbClick);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(295, 9);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(44, 75);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "读取";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.pidRbClick);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(154, 42);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 12);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "V ：";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(189, 39);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 21);
+            this.textBox9.TabIndex = 8;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(427, 64);
+            this.label16.Location = new System.Drawing.Point(154, 12);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(77, 12);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "转向速度 ：";
+            this.label16.Size = new System.Drawing.Size(29, 12);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "S ：";
             // 
-            // numericUpDown3
+            // textBox10
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(427, 79);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(120, 21);
-            this.numericUpDown3.TabIndex = 3;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.SpdValueChanged);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.panel11);
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(212, 100);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "控制PID";
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.label17);
-            this.panel11.Controls.Add(this.label18);
-            this.panel11.Controls.Add(this.label19);
-            this.panel11.Controls.Add(this.button11);
-            this.panel11.Controls.Add(this.button14);
-            this.panel11.Controls.Add(this.textBox10);
-            this.panel11.Controls.Add(this.textBox11);
-            this.panel11.Controls.Add(this.textBox12);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(3, 17);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(206, 80);
-            this.panel11.TabIndex = 12;
+            this.textBox10.Location = new System.Drawing.Point(189, 9);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(100, 21);
+            this.textBox10.TabIndex = 6;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(3, 62);
+            this.label17.Location = new System.Drawing.Point(5, 66);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(33, 12);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "D : ";
+            this.label17.Size = new System.Drawing.Size(29, 12);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "D ：";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(40, 63);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(100, 21);
+            this.textBox11.TabIndex = 4;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(3, 33);
+            this.label18.Location = new System.Drawing.Point(5, 39);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(33, 12);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "I : ";
+            this.label18.Size = new System.Drawing.Size(29, 12);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "I ：";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(40, 36);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(100, 21);
+            this.textBox12.TabIndex = 2;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(3, 6);
+            this.label19.Location = new System.Drawing.Point(5, 12);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(33, 12);
-            this.label19.TabIndex = 9;
-            this.label19.Text = "P : ";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(142, 28);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(61, 23);
-            this.button11.TabIndex = 8;
-            this.button11.Text = "read";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.pidRbClick);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(142, 57);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(61, 23);
-            this.button14.TabIndex = 7;
-            this.button14.Text = "setall";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.pidSbClick);
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(42, 59);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(94, 21);
-            this.textBox10.TabIndex = 3;
-            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(42, 30);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(94, 21);
-            this.textBox11.TabIndex = 2;
-            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(42, 3);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(94, 21);
-            this.textBox12.TabIndex = 1;
-            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.panel13);
-            this.groupBox8.Location = new System.Drawing.Point(215, 3);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(212, 100);
-            this.groupBox8.TabIndex = 2;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "电机PID";
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.label20);
-            this.panel13.Controls.Add(this.label21);
-            this.panel13.Controls.Add(this.label23);
-            this.panel13.Controls.Add(this.button15);
-            this.panel13.Controls.Add(this.button16);
-            this.panel13.Controls.Add(this.textBox13);
-            this.panel13.Controls.Add(this.textBox14);
-            this.panel13.Controls.Add(this.textBox15);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(3, 17);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(206, 80);
-            this.panel13.TabIndex = 13;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(3, 62);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(33, 12);
-            this.label20.TabIndex = 11;
-            this.label20.Text = "D : ";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(3, 33);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(33, 12);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "I : ";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label23.Location = new System.Drawing.Point(3, 6);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(33, 12);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "P : ";
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(142, 28);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(61, 23);
-            this.button15.TabIndex = 8;
-            this.button15.Text = "read";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.pidRbClick);
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(142, 57);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(61, 23);
-            this.button16.TabIndex = 7;
-            this.button16.Text = "setall";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.pidSbClick);
+            this.label19.Size = new System.Drawing.Size(29, 12);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "P ：";
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(42, 59);
+            this.textBox13.Location = new System.Drawing.Point(40, 9);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(94, 21);
-            this.textBox13.TabIndex = 3;
-            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(42, 30);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(94, 21);
-            this.textBox14.TabIndex = 2;
-            this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(42, 3);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(94, 21);
-            this.textBox15.TabIndex = 1;
-            this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox13.Size = new System.Drawing.Size(100, 21);
+            this.textBox13.TabIndex = 0;
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.panel12);
+            this.groupBox7.Controls.Add(this.panel8);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox7.Location = new System.Drawing.Point(0, 102);
             this.groupBox7.Name = "groupBox7";
@@ -1224,235 +990,125 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "俯仰轴参数";
             // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.label22);
-            this.panel12.Controls.Add(this.numericUpDown2);
-            this.panel12.Controls.Add(this.groupBox3);
-            this.panel12.Controls.Add(this.groupBox4);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(3, 17);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(635, 108);
-            this.panel12.TabIndex = 0;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.Location = new System.Drawing.Point(427, 64);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(77, 12);
-            this.label22.TabIndex = 4;
-            this.label22.Text = "转向速度 ：";
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(427, 79);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 21);
-            this.numericUpDown2.TabIndex = 3;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.SpdValueChanged);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.panel8);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(212, 100);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "控制PID";
-            // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.button9);
+            this.panel8.Controls.Add(this.button10);
+            this.panel8.Controls.Add(this.label14);
+            this.panel8.Controls.Add(this.textBox8);
+            this.panel8.Controls.Add(this.label13);
+            this.panel8.Controls.Add(this.textBox7);
             this.panel8.Controls.Add(this.label12);
-            this.panel8.Controls.Add(this.label11);
-            this.panel8.Controls.Add(this.label10);
-            this.panel8.Controls.Add(this.button13);
-            this.panel8.Controls.Add(this.button12);
             this.panel8.Controls.Add(this.textBox6);
+            this.panel8.Controls.Add(this.label11);
             this.panel8.Controls.Add(this.textBox5);
+            this.panel8.Controls.Add(this.label10);
             this.panel8.Controls.Add(this.textBox4);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 17);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(206, 80);
-            this.panel8.TabIndex = 12;
+            this.panel8.Size = new System.Drawing.Size(635, 108);
+            this.panel8.TabIndex = 0;
             // 
-            // label12
+            // button9
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(3, 62);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(33, 12);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "D : ";
+            this.button9.Location = new System.Drawing.Point(345, 9);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(44, 75);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "写入";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.pidSbClick);
             // 
-            // label11
+            // button10
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(3, 33);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 12);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "I : ";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(3, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 12);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "P : ";
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(142, 28);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(61, 23);
-            this.button13.TabIndex = 8;
-            this.button13.Text = "read";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.pidRbClick);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(142, 57);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(61, 23);
-            this.button12.TabIndex = 7;
-            this.button12.Text = "setall";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.pidSbClick);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(42, 59);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(94, 21);
-            this.textBox6.TabIndex = 3;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(42, 30);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(94, 21);
-            this.textBox5.TabIndex = 2;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(42, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(94, 21);
-            this.textBox4.TabIndex = 1;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.panel9);
-            this.groupBox4.Location = new System.Drawing.Point(215, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(212, 100);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "电机PID";
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.label13);
-            this.panel9.Controls.Add(this.label14);
-            this.panel9.Controls.Add(this.label15);
-            this.panel9.Controls.Add(this.button9);
-            this.panel9.Controls.Add(this.button10);
-            this.panel9.Controls.Add(this.textBox7);
-            this.panel9.Controls.Add(this.textBox8);
-            this.panel9.Controls.Add(this.textBox9);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(3, 17);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(206, 80);
-            this.panel9.TabIndex = 13;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(3, 62);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(33, 12);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "D : ";
+            this.button10.Location = new System.Drawing.Point(295, 9);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(44, 75);
+            this.button10.TabIndex = 11;
+            this.button10.Text = "读取";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.pidRbClick);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(3, 33);
+            this.label14.Location = new System.Drawing.Point(154, 42);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(33, 12);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "I : ";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(3, 6);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(33, 12);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "P : ";
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(142, 28);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(61, 23);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "read";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.pidRbClick);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(142, 57);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(61, 23);
-            this.button10.TabIndex = 7;
-            this.button10.Text = "setall";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.pidSbClick);
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(42, 59);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(94, 21);
-            this.textBox7.TabIndex = 3;
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "V ：";
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(42, 30);
+            this.textBox8.Location = new System.Drawing.Point(189, 39);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(94, 21);
-            this.textBox8.TabIndex = 2;
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox8.Size = new System.Drawing.Size(100, 21);
+            this.textBox8.TabIndex = 8;
             // 
-            // textBox9
+            // label13
             // 
-            this.textBox9.Location = new System.Drawing.Point(42, 3);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(94, 21);
-            this.textBox9.TabIndex = 1;
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(154, 12);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 12);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "S ：";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(189, 9);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 21);
+            this.textBox7.TabIndex = 6;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 66);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 12);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "D ：";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(40, 63);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 21);
+            this.textBox6.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 39);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 12);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "I ：";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(40, 36);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 21);
+            this.textBox5.TabIndex = 2;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(5, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 12);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "P ：";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(40, 9);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 21);
+            this.textBox4.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -1657,23 +1313,6 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // textBox23
-            // 
-            this.textBox23.Location = new System.Drawing.Point(176, 261);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(140, 21);
-            this.textBox23.TabIndex = 14;
-            // 
-            // button24
-            // 
-            this.button24.Location = new System.Drawing.Point(322, 261);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(75, 23);
-            this.button24.TabIndex = 15;
-            this.button24.Text = "button24";
-            this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.button24_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1704,35 +1343,14 @@
             this.tabPage4.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            this.groupBox10.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.panel16.ResumeLayout(false);
-            this.panel16.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
@@ -1806,82 +1424,53 @@
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 
